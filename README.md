@@ -1,2 +1,2 @@
 # Requiem-and-Thorne
-Small demo for the TSA
+Branch for our Art Designer to upload his work so we can implement it later on.
