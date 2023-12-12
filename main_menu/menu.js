@@ -59,8 +59,21 @@ function draw() {
 }
 
 function saveGame() {
+    let saveCount = Number(localStorage.getItem("save count"));
+
+    if(saveCount !== null) {
+        saveCount += 1;
+    }else {
+        saveCount = 1;
+    }
+
     let exchange = sessionStorage.getItem("data");
-    localStorage.setItem("data", exchange);
+    let save = {
+        id: 1,
+        playerData: JSON.parse(exchange)
+    }
+    localStorage.setItem("save_file"+saveCount, JSON.stringify(save));
+    localStorage.setItem("save count", saveCount);
 }
 
 function quitGame() {

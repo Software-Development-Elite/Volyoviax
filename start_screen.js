@@ -32,4 +32,8 @@ function draw() {
     if(new_game.mouse.presses()) {
         window.location.replace("top_down_game/debug_map/index.html");
     }
+
+    if(load_game.mouse.presses()) {
+        window.location.replace("select_save/index.html");
+    }
 }
