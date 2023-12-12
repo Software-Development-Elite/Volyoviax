@@ -35,5 +35,7 @@ function save_data() {
         y: player.y
     }
 
+    sessionStorage.setItem("which_map", 1);
+
     sessionStorage.setItem("data", JSON.stringify(map_data));
 }

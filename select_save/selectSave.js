@@ -38,7 +38,7 @@ function draw() {
             console.log(d);
             sessionStorage.setItem("data", JSON.stringify(d.playerData));
             sessionStorage.setItem("resume_game", 2);
-            window.location.replace("../top_down_game/debug_map/index.html");
+            window.location.replace("../"+d.map+"/index.html");
         }
     }
 }

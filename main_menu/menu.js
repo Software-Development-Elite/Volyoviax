@@ -6,6 +6,7 @@ var save_and_quit_game;
 
 var slot1, slot2, slot3;
 var selected_slot = 0;
+var a;
 
 function setup(){
     screen = createCanvas(800, 450);
@@ -37,8 +38,16 @@ function draw() {
     background("black");
 
     if(kb.presses("o")) {
-        sessionStorage.setItem("resume_game", 1);
-        window.location.replace("../top_down_game/debug_map/index.html");
+        let g = Number(sessionStorage.getItem("which_map"));
+        if(g === 1) {
+            sessionStorage.setItem("resume_game", 1);
+            window.location.replace("../top_down_game/debug_map/index.html");
+        }else if(g === 2) {
+            sessionStorage.setItem("resume_game", 2);
+            window.location.replace("../side_view_game/debug_map/index.html");
+        }
+
+        console.log(g);
     }
 
     if(slot1.mouse.hovering() || selected_slot === 1) {
@@ -107,14 +116,27 @@ function draw() {
 
 function saveGame() {
     let exchange = sessionStorage.getItem("data");
+    mapId()
     let save = {
         id: 1,
+        map: a,
         playerData: JSON.parse(exchange)
     }
+
+    console.log(save.map);
     localStorage.setItem("save_file"+selected_slot, JSON.stringify(save));
 }
 
 function quitGame() {
     sessionStorage.clear();
     window.location.replace("../index.html");
+}
+
+function mapId() {
+    let g = Number(sessionStorage.getItem("which_map"));
+    if(g === 1) {
+        a = "top_down_game/debug_map";
+    }else if(g === 2) {
+        a = "side_view_game/debug_map";
+    }
 }
