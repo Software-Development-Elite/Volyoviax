@@ -12,7 +12,7 @@ function setup() {
     saveFiles.height = 50;
 
     if(saveCount !== null) {
-        for(let i  = 1; i <= saveCount; i++) {
+        for(let i  = 1; i <= 3; i++) {
             file = new saveFiles.Sprite();
             file.x = 400;
             file.y = (50*i);
@@ -25,7 +25,7 @@ function draw() {
     background("black");
     
 
-    for(let i = 1; i <= saveCount; i++){
+    for(let i = 1; i <= 3; i++){
         if(saveFiles[i-1].mouse.hovering()) {
             saveFiles[i-1].color = "red";
         }else {
