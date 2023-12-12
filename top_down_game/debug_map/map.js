@@ -5,6 +5,7 @@ function setup() {
     screen.position(0,0);
 
     player_setup();
+    transferSetup(300, 400);
 
     let resume = sessionStorage.getItem("resume_game")
 
@@ -20,6 +21,7 @@ function draw() {
     background("black");
 
     player_draw();
+    transferDraw();
 
     if(kb.presses("o")) {
         save_data();
