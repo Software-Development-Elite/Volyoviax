@@ -36,7 +36,7 @@ function menuSystem() {
     }
 
     if(newGame_button.mouse.pressing()) {
-        screenState = "game";
+        sessionStorage.setItem("gameState", "tp_game");
         setup();
         redraw();
     }

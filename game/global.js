@@ -4,7 +4,7 @@ var screenState;
 function setup() {
     let state = sessionStorage.getItem("gameState");
     if(state === null) {
-        screenState = "game";
+        screenState = "sv_game";
     }else {
         screenState = state;
     }
@@ -12,9 +12,13 @@ function setup() {
     if(screenState === "menu") {
         sessionStorage.setItem("gameState", "menu");
         new p5(menu);
-    }else if(screenState === "game") {
-        sessionStorage.setItem("gameState", "game");
+    }else if(screenState === "tp_game") {
+        sessionStorage.setItem("gameState", "tp_game");
         new p5(scene1);
+        new p5(ui);
+    }else if(screenState === "sv_game") {
+        sessionStorage.setItem("gameState", "sv_game")
+        new p5(section1);
         new p5(ui);
     }
 }
@@ -22,7 +26,9 @@ function setup() {
 function draw() {
     if(screenState === "menu") {
         menuSystem();
-    }else if(screenState === "game") {
-        playerMovement();
+    }else if(screenState === "tp_game") {
+        tp_playerMovement();
+    }else if(screenState === "sv_game") {
+        sv_playerMovement();
     }
 }
