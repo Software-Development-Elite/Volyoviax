@@ -1,4 +1,8 @@
 var player;
+var direction = "unknown";
+const cooldownDuration = 5000; 
+let lastSpacePressTime = 0;
+var currentTime = Date.now();
 
 function setup() {
     new p5(demo);
@@ -22,19 +26,49 @@ var demo = function(sketch) {
 }
 
 function playerMovement() {
-    if(kb.pressing("w")) {
+    currentTime = Date.now();  
+
+    if (kb.pressing("w")) {
         player.y -= 5;
+        direction = "up";
+        console.log("up");
     }
 
-    if(kb.pressing("a")) {
+    if (kb.pressing("a")) {
         player.x -= 5;
+        direction = "left";
+        console.log("left");
     }
 
-    if(kb.pressing("s")) {
+    if (kb.pressing("s")) {
         player.y += 5;
+        direction = "down";
+        console.log("down");
     }
 
-    if(kb.pressing("d")) {
+    if (kb.pressing("d")) {
         player.x += 5;
+        direction = "right";
+        console.log("right");
+    }
+
+    if (kb.pressing("space")) {
+        if (currentTime - lastSpacePressTime >= cooldownDuration) {
+            if (direction === "right") {
+                player.x += 70;
+            } else if (direction === "left") {
+                player.x -= 70;
+            } else if (direction === "down") {
+                player.y += 70;
+            } else if (direction === "up") {
+                player.y -= 70;
+            }
+
+            lastSpacePressTime = currentTime;
+
+            setTimeout(function () {
+                console.log("Cooldown is over!");
+            }, cooldownDuration);
+        }
     }
 }
