@@ -28,6 +28,9 @@ var section1 = function(sketch) {
             400, 300,
             50,50
         );
+
+        td_transistion = new this.Sprite(800, 100, 25,25);
+        td_transistion.color = 'purple';
     }
 
     sketch.draw = function() {
@@ -35,5 +38,12 @@ var section1 = function(sketch) {
 
         this.camera.x = sv_player.x;
         this.camera.y = sv_player.y;
+
+        if(clear === true) {
+            game_clear(sketch);
+            clear = false;
+        }
+
+        sv_player.overlaps(td_transistion);
     }
 }

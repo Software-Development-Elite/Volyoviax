@@ -4,7 +4,7 @@ var screenState;
 function setup() {
     let state = sessionStorage.getItem("gameState");
     if(state === null) {
-        screenState = "sv_game";
+        screenState = "menu";
     }else {
         screenState = state;
     }
@@ -28,7 +28,9 @@ function draw() {
         menuSystem();
     }else if(screenState === "tp_game") {
         tp_playerMovement();
+        sv_switch();
     }else if(screenState === "sv_game") {
         sv_playerMovement();
+        td_switch();
     }
 }
