@@ -1,40 +1,28 @@
-var player;
+var screenState;
 
+// the setup() and draw() functions create the global sketch of the game, which manipulates all the local sketches and which ones are loaded and not.
 function setup() {
-    new p5(demo);
+    let state = sessionStorage.getItem("gameState");
+    if(state === null) {
+        screenState = "game";
+    }else {
+        screenState = state;
+    }
+
+    if(screenState === "menu") {
+        sessionStorage.setItem("gameState", "menu");
+        new p5(menu);
+    }else if(screenState === "game") {
+        sessionStorage.setItem("gameState", "game");
+        new p5(scene1);
+        new p5(ui);
+    }
 }
 
 function draw() {
-    playerMovement();
-}
-
-var demo = function(sketch) {
-    sketch.setup = function() {
-       let screen = this.createCanvas(400,400);
-       screen.position(0,0);
-
-        player  = new this.Sprite(200,200,50,50);
-    }
-
-    sketch.draw = function() {
-        this.background("green");
-    }
-}
-
-function playerMovement() {
-    if(kb.pressing("w")) {
-        player.y -= 5;
-    }
-
-    if(kb.pressing("a")) {
-        player.x -= 5;
-    }
-
-    if(kb.pressing("s")) {
-        player.y += 5;
-    }
-
-    if(kb.pressing("d")) {
-        player.x += 5;
+    if(screenState === "menu") {
+        menuSystem();
+    }else if(screenState === "game") {
+        playerMovement();
     }
 }
