@@ -1,6 +1,10 @@
 var sv_player;
 
-function sv_playerMovement() {
+function sv_player_draw() {
+    sv_player_movement();
+}
+
+function sv_player_movement() {
     if(kb.pressing("a")) {
         sv_player.x -= 5;
     }
@@ -9,9 +13,7 @@ function sv_playerMovement() {
         sv_player.x += 5;
     }
 
-    if(kb.pressing("space") && sv_player.colliding(tilex)) {
+    if(kb.pressing("space") && sv_player.colliding(tile1)) {
         sv_player.velocity.y = -8;
     }
-
-    sv_player.rotationSpeed = 0;
 }
