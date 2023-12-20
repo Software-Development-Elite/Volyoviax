@@ -1,40 +1,37 @@
-var player;
+var sceneState;
+var clear = false;
 
 function setup() {
-    new p5(demo);
+    let state = sessionStorage.getItem("gameState");
+
+    if(state === null) {
+        sceneState = "mm";
+        sessionStorage.setItem("gameState", "mm")
+    }else {
+        sceneState = state;
+    }
+
+    sv_setup();
+    td_setup();
+    mm_setup();
+    pm_setup();
 }
 
 function draw() {
-    playerMovement();
+    sv_draw();
+    td_draw();
+    mm_draw();
+    pm_draw();
 }
 
-var demo = function(sketch) {
-    sketch.setup = function() {
-       let screen = this.createCanvas(400,400);
-       screen.position(0,0);
-
-        player  = new this.Sprite(200,200,50,50);
-    }
-
-    sketch.draw = function() {
-        this.background("green");
-    }
+function game_clear(sketch) {
+    //ONLY USE WHEN CHANGING SCENES
+    sketch.remove();
 }
 
-function playerMovement() {
-    if(kb.pressing("w")) {
-        player.y -= 5;
-    }
-
-    if(kb.pressing("a")) {
-        player.x -= 5;
-    }
-
-    if(kb.pressing("s")) {
-        player.y += 5;
-    }
-
-    if(kb.pressing("d")) {
-        player.x += 5;
-    }
+function gameSwitch(newScene){
+    sessionStorage.setItem("gameState", newScene);
+    clear = true;
+    setup();
+    redraw();
 }
