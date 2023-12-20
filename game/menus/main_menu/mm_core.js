@@ -23,7 +23,10 @@ var main_menu = function(sketch) {
         //game objects are called here
 
         newGame = new this.Sprite(400, 200, 100,50);
+        newGame.text = "New Game"
+
         loadGame = new this.Sprite(400, 300, 100,50);
+        loadGame.text = "Continue Game"
 
         made_p5 = new this.Sprite(700, 400, 200, 50);
         made_p5.image = 'img/p5/made_with_p5play.png';
