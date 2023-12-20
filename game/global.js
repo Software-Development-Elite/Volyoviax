@@ -1,74 +1,36 @@
-var player;
-var direction = "unknown";
-const cooldownDuration = 5000; 
-let lastSpacePressTime = 0;
-var currentTime = Date.now();
+var screenState;
 
+// the setup() and draw() functions create the global sketch of the game, which manipulates all the local sketches and which ones are loaded and not.
 function setup() {
-    new p5(demo);
+    let state = sessionStorage.getItem("gameState");
+    if(state === null) {
+        screenState = "menu";
+    }else {
+        screenState = state;
+    }
+
+    if(screenState === "menu") {
+        sessionStorage.setItem("gameState", "menu");
+        new p5(menu);
+    }else if(screenState === "tp_game") {
+        sessionStorage.setItem("gameState", "tp_game");
+        new p5(scene1);
+        new p5(ui);
+    }else if(screenState === "sv_game") {
+        sessionStorage.setItem("gameState", "sv_game")
+        new p5(section1);
+        new p5(ui);
+    }
 }
 
 function draw() {
-    playerMovement();
-}
-
-var demo = function(sketch) {
-    sketch.setup = function() {
-       let screen = this.createCanvas(400,400);
-       screen.position(0,0);
-
-        player  = new this.Sprite(200,200,50,50);
-    }
-
-    sketch.draw = function() {
-        this.background("green");
-    }
-}
-
-function playerMovement() {
-    currentTime = Date.now();  
-
-    if (kb.pressing("w")) {
-        player.y -= 5;
-        direction = "up";
-        console.log("up");
-    }
-
-    if (kb.pressing("a")) {
-        player.x -= 5;
-        direction = "left";
-        console.log("left");
-    }
-
-    if (kb.pressing("s")) {
-        player.y += 5;
-        direction = "down";
-        console.log("down");
-    }
-
-    if (kb.pressing("d")) {
-        player.x += 5;
-        direction = "right";
-        console.log("right");
-    }
-
-    if (kb.pressing("space")) {
-        if (currentTime - lastSpacePressTime >= cooldownDuration) {
-            if (direction === "right") {
-                player.x += 70;
-            } else if (direction === "left") {
-                player.x -= 70;
-            } else if (direction === "down") {
-                player.y += 70;
-            } else if (direction === "up") {
-                player.y -= 70;
-            }
-
-            lastSpacePressTime = currentTime;
-
-            setTimeout(function () {
-                console.log("Cooldown is over!");
-            }, cooldownDuration);
-        }
+    if(screenState === "menu") {
+        menuSystem();
+    }else if(screenState === "tp_game") {
+        tp_playerMovement();
+        sv_switch();
+    }else if(screenState === "sv_game") {
+        sv_playerMovement();
+        td_switch();
     }
 }
