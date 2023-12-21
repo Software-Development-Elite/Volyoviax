@@ -16,8 +16,4 @@ function sv_player_movement() {
     }else {
         moveRight = false;
     }
-
-    if(kb.pressing("space") && sv_player.colliding(tile1)) {
-        playerJump = true;
-    }
 }

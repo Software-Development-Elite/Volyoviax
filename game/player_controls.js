@@ -31,10 +31,20 @@ function gameMovement() {
             sv_player.x += 5;
         }
 
-        if(playerJump === true && sv_player.collides(tile1)) {
+        if(playerJump === true) {
             sv_player.velocity.y = -8;
         }
+
+        playerJumping();
     }
 
     gamepad();
+}
+
+function playerJumping() {
+    if((kb.pressing("space")||contro.pressing('a')) && sv_player.colliding(tile1)) {
+        playerJump = true;
+    }else {
+        playerJump = false;
+    }
 }
