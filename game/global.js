@@ -18,6 +18,7 @@ function setup() {
 }
 
 function draw() {
+    gameMovement();
     sv_draw();
     td_draw();
     mm_draw();

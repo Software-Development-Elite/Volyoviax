@@ -6,18 +6,26 @@ function td_player_draw() {
 
 function td_playerMovement() {
     if(kb.pressing('w')) {
-        td_player.y -=5;
+        moveForward = true;
+    }else {
+        moveForward = false;
     }
 
     if(kb.pressing('a')) {
-        td_player.x -=5;
+        moveLeft = true;
+    }else {
+        moveLeft = false;
     }
 
     if(kb.pressing('s')) {
-        td_player.y +=5;
+        moveDown = true;
+    }else {
+        moveDown = false;
     }
 
     if(kb.pressing('d')) {
-        td_player.x +=5;
+        moveRight = true
+    }else {
+        moveRight = false;
     }
 }
