@@ -4,31 +4,41 @@ var moveDown = false;
 var moveRight = false;
 var playerJump = false;
 
+var playerPPosition = "left";
+
 function gameMovement() {
     if(sceneState === "td") {
+      //  playerPPosition = "down"
         if(moveForward === true) {
             td_player.y -= 5;
+            playerPPosition = "up";
         }
 
         if(moveLeft === true) {
             td_player.x -= 5;
+            playerPPosition = "left";
         }
 
         if(moveDown === true) {
             td_player.y += 5;
+            playerPPosition = "down";
         }
 
         if(moveRight === true) {
             td_player.x += 5;
+            playerPPosition = "right";
         }
     }
     if(sceneState === "sv") {
+      //  playerPPosition = "right";
         if(moveLeft === true) {
             sv_player.x -= 5;
+            playerPPosition = "left";
         }
 
         if(moveRight === true) {
             sv_player.x += 5;
+            playerPPosition = "right";
         }
 
         if(playerJump === true) {
