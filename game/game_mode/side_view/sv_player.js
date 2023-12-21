@@ -6,14 +6,18 @@ function sv_player_draw() {
 
 function sv_player_movement() {
     if(kb.pressing("a")) {
-        sv_player.x -= 5;
+        moveLeft = true;
+    }else {
+        moveLeft = false;
     }
 
     if(kb.pressing("d")) {
-        sv_player.x += 5;
+        moveRight = true;
+    }else {
+        moveRight = false;
     }
 
     if(kb.pressing("space") && sv_player.colliding(tile1)) {
-        sv_player.velocity.y = -8;
+        playerJump = true;
     }
 }
