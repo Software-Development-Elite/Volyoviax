@@ -53,7 +53,7 @@ var top_down = function(sketch) {
                 td_player_swing = new this.Sprite(td_player.x+50, td_player.y, 100, 25);
             }
     
-            swing.visible = false;
+            //td_player_swing.visible = false;
     
             td_player.overlaps(td_swing);
     
