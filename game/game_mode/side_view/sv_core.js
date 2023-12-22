@@ -68,7 +68,7 @@ var side_view = function(sketch) {
 
             sv_player_swing.collider = 'static';
     
-            //sv_player_swing.visible = false;
+            sv_player_swing.visible = false;
     
             sv_player.overlaps(sv_swing);
     
