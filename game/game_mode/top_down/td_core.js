@@ -59,7 +59,7 @@ var top_down = function(sketch) {
     
             td_swing.add(td_player_swing);
             did_player_swing_td = false;
-        }else if(kb.released('enter')) {
+        }else if(did_player_swing_td === false) {
             if(this.frameCount % 1 === 0) {
                 td_swing.removeAll();
             }

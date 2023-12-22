@@ -74,7 +74,7 @@ var side_view = function(sketch) {
     
             sv_swing.add(sv_player_swing);
             did_player_swing_sv = false;
-        }else if(kb.released('enter')) {
+        }else if(did_player_swing_sv === false) {
             if(this.frameCount % 1 === 0) {
                 sv_swing.removeAll();
             }
