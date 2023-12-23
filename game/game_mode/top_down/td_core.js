@@ -55,7 +55,7 @@ var top_down = function(sketch) {
     
             td_player_swing.visible = false;
     
-            td_player.overlaps(td_swing);
+            allSprites.overlaps(td_swing);
     
             td_swing.add(td_player_swing);
             did_player_swing_td = false;

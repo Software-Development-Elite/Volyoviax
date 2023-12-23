@@ -70,7 +70,7 @@ var side_view = function(sketch) {
     
             sv_player_swing.visible = false;
     
-            sv_player.overlaps(sv_swing);
+            allSprites.overlaps(sv_swing);
     
             sv_swing.add(sv_player_swing);
             did_player_swing_sv = false;
