@@ -1,5 +1,5 @@
 var playerSpeed = 5;
-var playerJump = 8;
+var playerJump = -8;
 var playerStrength = 5;
 
 

@@ -32,7 +32,7 @@ function gameMovement() {
         }
 
         if(playerJump === true) {
-            sv_player.velocity.y = -playerJump;
+            sv_player.velocity.y = -8;
         }
 
         playerJumping();
