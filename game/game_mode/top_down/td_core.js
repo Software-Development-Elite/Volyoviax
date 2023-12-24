@@ -11,6 +11,7 @@ function td_draw() {
         //game functions are called here
         td_player_draw();
         td_combat();
+        openplayerMenu();
         td_transistion_draw();
     }
 }

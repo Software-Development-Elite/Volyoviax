@@ -11,6 +11,7 @@ function sv_draw() {
         //gameplay functions go here
         sv_player_draw();
         sv_combat();
+        openplayerMenu();
         sv_transistion_draw();
     }
 }
