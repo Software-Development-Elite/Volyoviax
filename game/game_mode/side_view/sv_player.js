@@ -5,13 +5,13 @@ function sv_player_draw() {
 }
 
 function sv_player_movement() {
-    if(kb.pressing("a")) {
+    if(kb.pressing("left")) {
         moveLeft = true;
     }else {
         moveLeft = false;
     }
 
-    if(kb.pressing("d")) {
+    if(kb.pressing("right")) {
         moveRight = true;
     }else {
         moveRight = false;
