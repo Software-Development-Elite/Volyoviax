@@ -10,6 +10,7 @@ function sv_draw() {
     if(sceneState === "sv") {
         //gameplay functions go here
         sv_player_draw();
+        openplayerMenu();
         sv_transistion_draw();
     }
 }

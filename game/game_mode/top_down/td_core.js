@@ -10,6 +10,7 @@ function td_draw() {
     if(sceneState === "td") {
         //game functions are called here
         td_player_draw();
+        openplayerMenu();
         td_transistion_draw();
     }
 }
