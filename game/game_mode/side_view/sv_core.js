@@ -10,6 +10,8 @@ function sv_draw() {
     if(sceneState === "sv") {
         //gameplay functions go here
         sv_player_draw();
+        sv_combat();
+        openplayerMenu();
         sv_transistion_draw();
     }
 }
@@ -23,6 +25,9 @@ var side_view = function(sketch) {
         //game's objects are called here
         sv_player = new this.Sprite(400,225,50,50);
         sv_player.rotationLock = true;
+
+        sv_swing = new this.Group();
+        sv_swing.collider = 'static';
 
         sv_transistion = new this.Sprite(300, 200, 25, 25);
         sv_transistion.color = 'purple';
@@ -53,6 +58,27 @@ var side_view = function(sketch) {
         if(clear === true) {
             game_clear(sketch);
             clear = false;
+        }
+
+        if(did_player_swing_sv === true) {
+            if(playerPPosition === "left") {
+                sv_player_swing = new this.Sprite(sv_player.x-50, sv_player.y, 100, 25);
+            }else if(playerPPosition === "right") {
+                sv_player_swing = new this.Sprite(sv_player.x+50, sv_player.y, 100, 25);
+            }
+
+            sv_player_swing.collider = 'static';
+    
+            sv_player_swing.visible = false;
+    
+            allSprites.overlaps(sv_swing);
+    
+            sv_swing.add(sv_player_swing);
+            did_player_swing_sv = false;
+        }else if(did_player_swing_sv === false) {
+            if(this.frameCount % 1 === 0) {
+                sv_swing.removeAll();
+            }
         }
     }
 }
