@@ -43,6 +43,17 @@ var side_view = function(sketch) {
         tile2.tile = 'h';
         tile2.color = 'brown';
 
+        if(callPlayerP === true) {
+            let pX = sessionStorage.getItem("x");
+            let pY = sessionStorage.getItem("y");
+
+            if(pX !== null && pY !== null) {
+                sv_player.x = pX;
+                sv_player.y = pY;
+            }
+            callPlayerP = false;
+        }
+
         section_debug(sketch);
     }
 

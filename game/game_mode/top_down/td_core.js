@@ -30,6 +30,16 @@ var top_down = function(sketch) {
 
         td_swing = new this.Group();
 
+        if(callPlayerP === true) {
+            let pX = sessionStorage.getItem("x");
+            let pY = sessionStorage.getItem("y");
+
+            if(pX !== null && pY !== null) {
+                td_player.x = pX;
+                td_player.y = pY;
+            }
+            callPlayerP = false;
+        }
     }
 
     sketch.draw = function() {
