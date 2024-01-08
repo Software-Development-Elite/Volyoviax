@@ -13,6 +13,7 @@ function td_draw() {
         td_combat();
         openplayerMenu();
         td_transistion_draw();
+        collidess();
     }
 }
 
@@ -29,6 +30,10 @@ var top_down = function(sketch) {
         td_transistion.color = 'purple';
 
         td_swing = new this.Group();
+
+        npc = new Group();
+        npc =  new this.Sprite(400, 225, 50, 50);
+        npc.collider = 'kinematic';
 
     }
 
@@ -54,7 +59,7 @@ var top_down = function(sketch) {
                 td_player_swing = new this.Sprite(td_player.x+50, td_player.y, 100, 25);
             }
     
-            td_player_swing.visible = false;
+            //td_player_swing.visible = false;
     
             allSprites.overlaps(td_swing);
     
