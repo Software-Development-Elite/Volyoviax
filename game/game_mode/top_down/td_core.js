@@ -13,6 +13,7 @@ function td_draw() {
         td_combat();
         openplayerMenu();
         td_transistion_draw();
+        td_enemyBehavior();
     }
 }
 
@@ -29,6 +30,30 @@ var top_down = function(sketch) {
         td_transistion.color = 'purple';
 
         td_swing = new this.Group();
+
+        td_enemy = new this.Group();
+        td_enemy.x = 50;
+        td_enemy.y = 50;
+        td_enemy.rotationLock = true;
+
+        td_enemy_df = new this.Group();
+        td_enemy_df.radius = 100;
+        td_enemy_df.collider = 'n';
+        td_enemy_df.debug = true;
+        //td_enemy_df.visible = false;
+
+        for(let i=0; i<3; i++) {
+            new td_enemy.Sprite(300, 200);
+        }
+
+        td_enemy_state.length = td_enemy.length;
+        td_stunned_mode.length = td_enemy_state.length;
+
+        for(let i=0; i<td_enemy.length; i++) {
+            new td_enemy_df.Sprite(td_enemy[i].x, td_enemy[i].y);
+            td_enemy_state[i] = "idle";
+            td_stunned_mode[i] = false;
+        }
 
     }
 
