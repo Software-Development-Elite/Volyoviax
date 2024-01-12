@@ -23,8 +23,9 @@ var side_view = function(sketch) {
         this.world.gravity.y = 20;
 
         //game's objects are called here
-        sv_player = new this.Sprite(400,225,50,50);
+        sv_player = new this.Sprite(501,225,50,50);
         sv_player.rotationLock = true;
+        sv_player.bounciness = 0;
 
         sv_swing = new this.Group();
         sv_swing.collider = 'static';
@@ -43,6 +44,13 @@ var side_view = function(sketch) {
         tile2.tile = 'h';
         tile2.color = 'brown';
 
+        tile3 = new sv_tiles.Group();
+        tile3.tile = 'f';
+        tile3.color = 'blue';
+
+
+        sv_bob = new this.Sprite(200, -1000, 75, 75);
+        sv_bob.color = 'red';
         section_debug(sketch);
     }
 

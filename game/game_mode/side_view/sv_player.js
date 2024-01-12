@@ -16,4 +16,28 @@ function sv_player_movement() {
     }else {
         moveRight = false;
     }
+
+    if(kb.pressing("down")) {
+        playerGroundPound = true;
+        poundable = false;
+    }else {
+        playerGroundPound = false;
+        poundable = true;
+    }
+
+    if(sv_player.colliding(sv_tiles)) {
+        isTouchingGround = true;
+    }else{
+        isTouchingGround = false;
+    }
+    
+    if(sv_player.colliding(tile3) > 1 ) {
+        isTouchingWall = true;
+    }else{
+        isTouchingWall = false;
+    }
+
+
+    console.log(isTouchingGround);
+
 }

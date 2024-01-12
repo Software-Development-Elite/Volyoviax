@@ -7,6 +7,18 @@ function section_debug(sketch) {
     if(sv_sectionState === "debug") {
         debug_map = new sketch.Tiles(
             [
+                'g..........',
+                'hg.........',
+                'hhh........',
+                'gggh......h',
+                '..........f',
+                'g.........f',
+                'hgg........',
+                'hhhhhh....h',
+                '..........f',
+                '..........f',
+                '..........f',
+                'gggggg.....',
                 'ggggggggggg',
                 '.hhhhhhhhh.',
                 '..hhhhhhh..',
