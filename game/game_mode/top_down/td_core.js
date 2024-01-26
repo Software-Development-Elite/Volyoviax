@@ -24,8 +24,8 @@ var top_down = function(sketch) {
         //game objects are called here
         td_player = new this.Sprite(400, 225, 50, 50);
         td_player.rotationLock = true;
-
-        td_transistion = new this.Sprite(100, 400, 25, 25);
+        
+        td_transistion = new this.Sprite(600, 800, 25, 25);
         td_transistion.color = 'purple';
 
         td_swing = new this.Group();

@@ -8,8 +8,10 @@ var isTouchingWall = false;
 var poundable = true;
 var playerGroundPound = false;
 var isTouchingGround = false;
-var playerDash = false;
-var dashable = true;
+var playerDash = true;
+var sv_cooldownDuration = 1500;
+var isTouchingLeftWall = false;
+var playerWallJumpLeft = false;
 
 var playerPPosition = "left";
 
@@ -51,13 +53,21 @@ function gameMovement() {
         if(playerJump === true) {
             sv_player.velocity.y = -8;
         }
+        if (playerWallJumpLeft===true){
+            sv_player.velocity.y = -8;
+            // if(sv_player.x<tile4.x){
+                sv_player.velocity.x=8;
+            // }else{
+            //     sv_player.velocity.x = -8;
+            // }
+        }
         if (playerWallJump===true){
             sv_player.velocity.y = -8;
-            if(sv_player.x<tile3.x){
-                sv_player.velocity.x=8;
-            }else{
-                sv_player.velocity.x = -8;
-            }
+            // if(sv_player.x<tile3.x){
+                sv_player.velocity.x=-8;
+            // }else{
+            //     sv_player.velocity.x = -8;
+            // }
         }
 
         if(isTouchingGround === false && playerGroundPound === true && !kb.pressing("space")) {
@@ -80,20 +90,29 @@ function gameMovement() {
     gamepad();
 }
 function playerdashing() {
-    if(kb.pressing("shift")){
-        sv_player.color="yellow";
-        if(kb.pressing("left")){
-            sv_player.velocity.x=sv_player.velocity.x-2;
-        }else{
-            sv_player.velocity.x=sv_player.velocity.x+2;
-        }
-    }
     if(kb.pressing("shift") && isTouchingWall===true){
         sv_player.drag=100
+        sv_player.color= "pink"
+    }else if(kb.pressing("shift") && isTouchingLeftWall===true){
+        sv_player.drag=100
+        sv_player.color= "pink"
     }else{
         sv_player.drag=0
     }
-}
+    if(kb.pressing("shift") && playerDash===true){
+        playerDash = false;
+        setTimeout(function() {playerDash = true;
+    }, sv_cooldownDuration); 
+    if(kb.pressing("left") && isTouchingWall === false){
+        sv_player.velocity.x=sv_player.velocity.x-10;
+    }else if (isTouchingLeftWall === false){
+        sv_player.velocity.x=sv_player.velocity.x+10;
+    }
+
+        }
+    }
+    
+
 function playerJumping() {
     if((kb.pressing("space")||contro.pressing('a')) && sv_player.colliding(tile1)) {
         playerJump = true;
@@ -105,5 +124,11 @@ function playerJumping() {
     }
     else{
         playerWallJump = false;
+    }
+    if(kb.pressing("space") && isTouchingLeftWall===true){
+        playerWallJumpLeft = true;
+    }
+    else{
+        playerWallJumpLeft = false;
     }
 }

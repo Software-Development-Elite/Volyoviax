@@ -30,7 +30,7 @@ var side_view = function(sketch) {
         sv_swing = new this.Group();
         sv_swing.collider = 'static';
 
-        sv_transistion = new this.Sprite(300, 200, 25, 25);
+        sv_transistion = new this.Sprite(1750, 200, 25, 25);
         sv_transistion.color = 'purple';
 
         sv_tiles = new this.Group();
@@ -48,9 +48,20 @@ var side_view = function(sketch) {
         tile3.tile = 'f';
         tile3.color = 'blue';
 
+        tile4 = new sv_tiles.Group();
+        tile4.tile = 'j';
+        tile4.color = 'orange';
+        
+        sv_bob = new this.Sprite(700, -1000, 50, 50);
+        sv_bob.color = 'grey';
+        sv_bob.rotationLock = true;
+        sv_bob.bounciness = 0;
 
-        sv_bob = new this.Sprite(200, -1000, 75, 75);
-        sv_bob.color = 'red';
+        sv_bob1 = new this.Sprite(1500, -1000, 50, 50);
+        sv_bob1.color = 'grey';
+        sv_bob1.rotationLock = true;
+        sv_bob1.bounciness = 0;
+
         section_debug(sketch);
     }
 

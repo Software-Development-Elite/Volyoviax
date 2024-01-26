@@ -5,13 +5,13 @@ function sv_player_draw() {
 }
 
 function sv_player_movement() {
-    if(kb.pressing("left")) {
+
+    if(kb.pressing("left") && isTouchingWall===false) /*&& isTouchingWallLeft===false)*/ {
         moveLeft = true;
     }else {
         moveLeft = false;
     }
-
-    if(kb.pressing("right")) {
+    if(kb.pressing("right")&& isTouchingWall===false) /*&& isTouchingWallLeft===false)*/ {
         moveRight = true;
     }else {
         moveRight = false;
@@ -31,12 +31,16 @@ function sv_player_movement() {
         isTouchingGround = false;
     }
     
-    if(sv_player.colliding(tile3) > 1 ) {
+    if(sv_player.colliding(tile3) ) {
         isTouchingWall = true;
     }else{
         isTouchingWall = false;
     }
-
+    if(sv_player.colliding(tile4) ) {
+        isTouchingLeftWall = true;
+    }else{
+        isTouchingLeftWall = false;
+    }
 
     console.log(isTouchingGround);
 
