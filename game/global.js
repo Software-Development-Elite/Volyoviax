@@ -15,6 +15,7 @@ function setup() {
     td_setup();
     mm_setup();
     pm_setup();
+    ui_setup();
 }
 
 function draw() {
@@ -23,6 +24,7 @@ function draw() {
     td_draw();
     mm_draw();
     pm_draw();
+    ui_draw();
 }
 
 function game_clear(sketch) {
