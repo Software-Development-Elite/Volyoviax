@@ -2,72 +2,52 @@ var npc;
 var npcState = "idle";
 var collisionOccurred = false;
 var npc_df;
+var npcL = [];
+var npcCount;
+var npcHP = 100;
 
-var text_ar = ["Hello", "BYE"];
-var text_l = text_ar.length;
-var box;
-var b = 1;
-
-function npc_Collision() {
-    if (td_player.overlapping(npc_df) && kb.pressing('i')) {
-        console.log("Hello");
-        dialogue(0);
-        dialogue(1);
-        // text_b.visible = true;
-
-    } else {
-        // text_b.visible = false;
+function npc_Spawn() {
+    npcCount = 5;
+    for(let i=0; i<npcCount; i++){
+        var npc_randomx = random(0, 800);
+        var npc_randomy = random(0, 445);
+        new npc.Sprite(npc_randomx,npc_randomy,50,50);
     }
-
-    function dialogue(a) {
-        if(frameCount % 16 === 0) {
-            box[a].text = text_ar[a].slice(0, b);
-            b += 1;
-          }
-      }
-
-
-     
-    if (td_swing.collides(npc)){
+    console.log(npcL, npc);
+}
+function npc_Collision() {
+for(let i=0; i<npc.length;i++) {
+    if (td_swing.collides(npc[i])){
         print("Hit");
-
+        npcHP -= 20;
+        print(npcHP)
         if (playerPPosition == 'right') {
-            npc.x += 30;
+            npc[i].x += 30;
         } else if (playerPPosition == 'left') {
-            npc.x -= 30;
+            npc[i].x -= 30;
         } else if (playerPPosition == 'up') {
-            npc.y -= 30;
+            npc[i].y -= 30;
         } else if (playerPPosition == 'down') {
-            npc.y += 30;
+            npc[i].y += 30;
         } 
         npcState = "follow";
     }
-
     if(npcState === "follow") {
         td_player.speed = 0;
-        if (td_player.collides(npc) || npc.collides(td_player) ) {
-            npc.collider = 'k';
-            npc.layer = 4;
+            npc[i].collider = 'k';
+            npc[i].collides(npc[i]);
+       /* if (td_player.collides(npc[i]) || npc[i].collides(td_player) ) {
+            npc[i].collider = 'k';
             collisionOccurred = true;
         } else {
             if (collisionOccurred) {
                 setTimeout(() => {
-                    npc.collider = 'k';
+                    npc[i].collider = 'k';
                 }, 500);
                 collisionOccurred = false;
             }
-        }
-        npc.moveTowards(td_player, 0.01);
-        if ((playerPPosition === 'right' && td_player.collides(npc)) || (npc.collides(td_player))) {
-            td_player.x -= 20; 
-        } else if ((playerPPosition === 'left' && td_player.collides(npc)) || (npc.collides(td_player))) {
-            td_player.x += 40; 
-        } else if ((playerPPosition === 'up' && td_player.collides(npc)) || (npc.collides(td_player))) {
-            td_player.y -= 20; 
-        } else if ((playerPPosition === 'down' && td_player.collides(npc)) || (npc.collides(td_player))) {
-            td_player.y -= 20; 
-        }
-
+         } */
+            npc[i].moveTowards(td_player, 0.01);
         }
     }
-
+}

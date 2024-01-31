@@ -14,6 +14,7 @@ function td_draw() {
         openplayerMenu();
         td_transistion_draw();
         npc_Collision();
+        //npc_Spawn();
     }
 }
 
@@ -25,21 +26,27 @@ var top_down = function(sketch) {
         //game objects are called here
         td_player = new this.Sprite(400, 225, 50, 50);
         td_player.rotationLock = true;
-        
+
         td_transistion = new this.Sprite(100, 400, 25, 25);
         td_transistion.color = 'purple';
+        td_transistion.collider = 'k';
 
         td_swing = new this.Group();
-        npc = new Group();
-        npc = new this.Sprite(400, 225, 50, 50);
+
+        npc = new this.Group();
         npc.collider = 'kinematic';
 
+        npc_Spawn();
+
         npc_df = new Group();
-        npc_df = new this.Sprite(npc.x, npc.y);
         npc_df.d = 150;
         npc_df.debug = true;
-        //npc_df.visible = false;
+        npc_df.visible = true;
         npc_df.collider = 'n';
+
+       for(let i=0; i<npc.length; i++) {
+        new npc_df.Sprite(npc.x, npc.y);
+       }
 
         /*text_b = new Group();
         text_b = new this.Sprite(100, 100, 250, 50);
@@ -49,15 +56,18 @@ var top_down = function(sketch) {
         text_b.visible = false; */
 
         //box=[new Sprite(400,225,200,50), new Sprite(400,225,200,50)];
+        
+
     }
 
     sketch.draw = function() {
         this.background("black");
 
-        td_player.overlaps(td_transistion);
-
-        npc_df.x = npc.x
-        npc_df.y = npc.y;
+        for(let i=0; i<npc.length;i++) {
+            npc_df[i].x = npc[i].x;
+            npc_df[i].y = npc[i].y;
+        }
+        console.log(npc.length);
 
         //for scene switching
         if(clear === true) {

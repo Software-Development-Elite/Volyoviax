@@ -73,7 +73,6 @@ function td_playerMovement() {
                 setTimeout(function () {
                     stopTimerr = true;
                     stopTimer();
-                    print("YAPPPPPPPPING");
                 }, 1000);
             }
         }
