@@ -23,13 +23,14 @@ var side_view = function(sketch) {
         this.world.gravity.y = 20;
 
         //game's objects are called here
-        sv_player = new this.Sprite(400,225,50,50);
+        sv_player = new this.Sprite(501,225,50,50);
         sv_player.rotationLock = true;
+        sv_player.bounciness = 0;
 
         sv_swing = new this.Group();
         sv_swing.collider = 'static';
 
-        sv_transistion = new this.Sprite(300, 200, 25, 25);
+        sv_transistion = new this.Sprite(1750, 200, 25, 25);
         sv_transistion.color = 'purple';
 
         sv_tiles = new this.Group();
@@ -42,6 +43,24 @@ var side_view = function(sketch) {
         tile2 = new sv_tiles.Group();
         tile2.tile = 'h';
         tile2.color = 'brown';
+
+        tile3 = new sv_tiles.Group();
+        tile3.tile = 'f';
+        tile3.color = 'blue';
+
+        tile4 = new sv_tiles.Group();
+        tile4.tile = 'j';
+        tile4.color = 'orange';
+        
+        sv_jack = new this.Sprite(700, -1000, 50, 50);
+        sv_jack.color = 'grey';
+        sv_jack.rotationLock = true;
+        sv_jack.bounciness = 0;
+
+        sv_jack1 = new this.Sprite(1500, -1000, 50, 50);
+        sv_jack1.color = 'grey';
+        sv_jack1.rotationLock = true;
+        sv_jack1.bounciness = 0;        
 
         section_debug(sketch);
     }
