@@ -1,16 +1,13 @@
-var sceneState;
-var clear = false;
+var screenState;
 
+// the setup() and draw() functions create the global sketch of the game, which manipulates all the local sketches and which ones are loaded and not.
 function setup() {
     let state = sessionStorage.getItem("gameState");
-
     if(state === null) {
-        sceneState = "mm";
-        sessionStorage.setItem("gameState", "mm")
+        screenState = "menu";
     }else {
-        sceneState = state;
+        screenState = state;
     }
-
     sv_setup();
     td_setup();
     mm_setup();
