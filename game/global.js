@@ -1,38 +1,36 @@
-var sceneState;
-var clear = false;
+var screenState;
 
+// the setup() and draw() functions create the global sketch of the game, which manipulates all the local sketches and which ones are loaded and not.
 function setup() {
     let state = sessionStorage.getItem("gameState");
-
     if(state === null) {
-        sceneState = "mm";
-        sessionStorage.setItem("gameState", "mm")
+        screenState = "menu";
     }else {
-        sceneState = state;
+        screenState = state;
     }
 
-    sv_setup();
-    td_setup();
-    mm_setup();
-    pm_setup();
+    if(screenState === "menu") {
+        sessionStorage.setItem("gameState", "menu");
+        new p5(menu);
+    }else if(screenState === "tp_game") {
+        sessionStorage.setItem("gameState", "tp_game");
+        new p5(scene1);
+        new p5(ui);
+    }else if(screenState === "sv_game") {
+        sessionStorage.setItem("gameState", "sv_game")
+        new p5(section1);
+        new p5(ui);
+    }
 }
 
 function draw() {
-    gameMovement();
-    sv_draw();
-    td_draw();
-    mm_draw();
-    pm_draw();
-}
-
-function game_clear(sketch) {
-    //ONLY USE WHEN CHANGING SCENES
-    sketch.remove();
-}
-
-function gameSwitch(newScene){
-    sessionStorage.setItem("gameState", newScene);
-    clear = true;
-    setup();
-    redraw();
+    if(screenState === "menu") {
+        menuSystem();
+    }else if(screenState === "tp_game") {
+        tp_playerMovement();
+        sv_switch();
+    }else if(screenState === "sv_game") {
+        sv_playerMovement();
+        td_switch();
+    }
 }
